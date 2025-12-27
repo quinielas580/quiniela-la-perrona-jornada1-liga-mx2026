@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Quiniela La Perrona 🍀</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --yellow: #ffcc00; --dark: #1a1a1a; --red: #b30000; --whatsapp-green: #25D366; --blue-share: #007bff; --row-selected: #332b00; }
+        html, body { margin: 0; padding: 0; background: #000; width: 100%; height: 100%; overflow-x: hidden; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; color: #fff; display: flex; justify-content: center; align-items: center; padding: 5px; }
+        
+        .wrapper { 
+            width: 95%; 
+            max-width: 420px; 
+            background: var(--dark); 
+            border: 2px solid var(--yellow); 
+            border-radius: 12px; 
+            padding: 12px 12px 5px 12px; 
+            box-sizing: border-box; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 95vh; 
+            position: relative; 
+        }
+        
+        #bienvenida { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: url('quiniela la perrona.png') no-repeat center center; 
+            background-size: 100% 100%; 
+            z-index: 10; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-end; 
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+        .content-welcome { 
+            height: 100%; 
+            padding: 15px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-end; 
+            text-shadow: 2px 2px 4px #000; 
+            background: linear-gradient(transparent 10%, rgba(0,0,0,0.8) 40%, #000 90%);
+        }
+        .urgencia { color: var(--yellow); font-size: 16px; font-weight: 900; text-align: center; margin-bottom: 15px; text-transform: uppercase; animation: blink 1s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        .texto-promo { font-size: 12.5px; line-height: 1.3; font-weight: 500; margin-bottom: 10px; }
+        .texto-promo b { color: var(--yellow); }
+        
+        .aviso-telefono {
+            margin-top: 8px;
+            padding: 6px;
+            border: 1px dashed var(--yellow);
+            background: rgba(0,0,0,0.5);
+            border-radius: 6px;
+            text-align: center;
+            font-size: 11px;
+            color: #fff;
+        }
+
+        .title { background: var(--red); border: 1px solid var(--yellow); text-align: center; font-size: 18px; font-weight: bold; padding: 10px; margin-bottom: 12px; text-transform: uppercase; border-radius: 4px; }
+        .field { display: grid; grid-template-columns: 80px 1fr; margin-bottom: 8px; align-items: center; }
+        .field label { color: var(--yellow); font-weight: bold; font-size: 13px; }
+        .field input, .field select { background: rgba(255,255,255,0.05); border: 1px solid var(--yellow); color: #fff; padding: 8px; border-radius: 4px; font-size: 15px; width: 100%; box-sizing: border-box; outline: none; }
+        select option { background: var(--dark); color: #fff; }
+
+        .table { border: 1px solid var(--yellow); width: 100%; box-sizing: border-box; margin-bottom: 4px; border-radius: 4px; overflow: hidden; }
+        .header, .row { display: grid; grid-template-columns: 45px 1fr 45px 1fr 45px; }
+        
+        .cell { 
+            height: 36px; 
+            padding: 3.5px; 
+            border-right: 1px solid rgba(255, 204, 0, 0.3); 
+            border-bottom: 1px solid rgba(255, 204, 0, 0.3); 
+            display: flex; 
+            align-items: center; 
+            font-size: 14px; 
+            box-sizing: border-box;
+        }
+        
+        .header .cell { background: #333; color: var(--yellow); font-size: 18px; font-weight: bold; justify-content: center; border-bottom: 2px solid var(--yellow); height: 32px; }
+        .cell-local { justify-content: flex-start; padding-left: 3.5px; font-weight: bold; text-transform: uppercase; }
+        .cell-visita { justify-content: flex-end; padding-right: 3.5px; font-weight: bold; text-transform: uppercase; text-align: right; }
+        
+        .cell.radio { justify-content: center; }
+        .cell.radio input[type="radio"] { transform: scale(1.6); cursor: pointer; accent-color: var(--yellow); margin: 0; }
+        
+        .row:has(input:checked) { background: var(--row-selected); }
+        
+        .submit { background: var(--yellow); color: #000; padding: 15px; text-align: center; font-weight: 800; cursor: pointer; border: none; border-radius: 6px; text-transform: uppercase; font-size: 16px; width: 100%; margin-top: 4px; }
+        
+        .btn-whatsapp { margin-top: 10px; background: var(--whatsapp-green); color: white !important; padding: 15px 10px; text-align: center; font-weight: bold; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; width: 100%; font-size: 14px; box-sizing: border-box; cursor: pointer; }
+        .btn-share { margin-top: 20px; background: var(--blue-share); color: white !important; padding: 15px 10px; text-align: center; font-weight: bold; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; width: 100%; font-size: 13px; box-sizing: border-box; cursor: pointer; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div id="bienvenida">
+        <div class="content-welcome">
+            <div class="urgencia">⚡ ¡REGISTRO GRATIS! ¡VEN A PARTICIPAR YA! ⚡</div>
+
+            <div class="texto-promo">
+                🥇 <b>Primer lugar:</b> Botella de Maestro Dobel Diamante.<br>
+                🍺 <b>Último lugar:</b> El premio será un six de cervezas.<br>
+                👥 <b>Invitados:</b> Si invitas a 3 personas tienes 2 puntos extras. (para poder recibir los dos puntos tus invitados deberan de contestar las 3 jornadas).<br>
+                🤝 <b>Empate:</b> El costo de los premios se convierte en efectivo y se reparte en partes iguales.<br>
+                📅 <b>Registros:</b> Inician YA y cierran el día 8 de enero.<br>
+                📝 <b>Importante:</b> Escribe el número de teléfono de quien te invitó en las preguntas.<br>
+                
+                <div class="aviso-telefono">
+                    ⚠️ <b>SOLO SE TOMARÁN EN CUENTA TELÉFONOS REALES</b>
+                </div>
+            </div>
+            <button type="button" class="submit" style="margin-bottom: 10px;" onclick="mostrarFormulario()">🔥 COMENZAR REGISTRO 🔥</button>
+        </div>
+    </div>
+
+    <form id="quinielaForm" class="hidden">
+        <div class="title">✨ QUINIELA LA PERRONA ✨</div>
+        <div class="field"><label>Nombre</label><input name="nombre" placeholder="👤 Nombre completo" required></div>
+        <div class="field"><label>Teléfono</label><input type="tel" name="telefono" placeholder="Tu número (10 dígitos)" required maxlength="10" pattern="\d{10}"></div>
+        <div class="field"><label>Invitó</label><input type="tel" name="telefono_invito" placeholder="Teléfono de quien te invitó" required maxlength="10" pattern="\d{10}"></div>
+
+        <div class="field" style="grid-template-columns: 1fr;">
+            <label style="margin-bottom: 5px;">¿Te puedo agregar a un grupo para mandar los resultados?</label>
+            <select name="agregar_grupo" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="SI">SÍ</option>
+                <option value="NO">NO</option>
+            </select>
+        </div>
+
+        <div class="table" style="margin-top: 10px;">
+            <div class="header"><div class="cell">L</div><div class="cell" style="font-size: 10px;">LOCAL</div><div class="cell">E</div><div class="cell" style="font-size: 10px;">VISITA</div><div class="cell">V</div></div>
+            <div class="row" data-local="ATLAS" data-visitante="PUEBLA"><div class="cell radio"><input type="radio" name="p1" value="L" required></div><div class="cell cell-local">ATLAS</div><div class="cell radio"><input type="radio" name="p1" value="E"></div><div class="cell cell-visita">PUEBLA</div><div class="cell radio"><input type="radio" name="p1" value="V"></div></div>
+            <div class="row" data-local="MAZATLÁN" data-visitante="JUÁREZ"><div class="cell radio"><input type="radio" name="p2" value="L" required></div><div class="cell cell-local">MAZATLÁN</div><div class="cell radio"><input type="radio" name="p2" value="E"></div><div class="cell cell-visita">JUÁREZ</div><div class="cell radio"><input type="radio" name="p2" value="V"></div></div>
+            <div class="row" data-local="TIJUANA" data-visitante="AMÉRICA"><div class="cell radio"><input type="radio" name="p3" value="L" required></div><div class="cell cell-local">TIJUANA</div><div class="cell radio"><input type="radio" name="p3" value="E"></div><div class="cell cell-visita">AMÉRICA</div><div class="cell radio"><input type="radio" name="p3" value="V"></div></div>
+            <div class="row" data-local="CHIVAS" data-visitante="PACHUCA"><div class="cell radio"><input type="radio" name="p4" value="L" required></div><div class="cell cell-local">CHIVAS</div><div class="cell radio"><input type="radio" name="p4" value="E"></div><div class="cell cell-visita">PACHUCA</div><div class="cell radio"><input type="radio" name="p4" value="V"></div></div>
+            <div class="row" data-local="LEÓN" data-visitante="CRUZ AZUL"><div class="cell radio"><input type="radio" name="p5" value="L" required></div><div class="cell cell-local">LEÓN</div><div class="cell radio"><input type="radio" name="p5" value="E"></div><div class="cell cell-visita">CRUZ AZUL</div><div class="cell radio"><input type="radio" name="p5" value="V"></div></div>
+            <div class="row" data-local="SANTOS" data-visitante="NECAXA"><div class="cell radio"><input type="radio" name="p6" value="L" required></div><div class="cell cell-local">SANTOS</div><div class="cell radio"><input type="radio" name="p6" value="E"></div><div class="cell cell-visita">NECAXA</div><div class="cell radio"><input type="radio" name="p6" value="V"></div></div>
+            <div class="row" data-local="MONTERREY" data-visitante="TOLUCA"><div class="cell radio"><input type="radio" name="p7" value="L" required></div><div class="cell cell-local">MONTERREY</div><div class="cell radio"><input type="radio" name="p7" value="E"></div><div class="cell cell-visita">TOLUCA</div><div class="cell radio"><input type="radio" name="p7" value="V"></div></div>
+            <div class="row" data-local="PUMAS" data-visitante="QUERÉTARO"><div class="cell radio"><input type="radio" name="p8" value="L" required></div><div class="cell cell-local">PUMAS</div><div class="cell radio"><input type="radio" name="p8" value="E"></div><div class="cell cell-visita">QUERÉTARO</div><div class="cell radio"><input type="radio" name="p8" value="V"></div></div>
+            <div class="row" data-local="SAN LUIS" data-visitante="TIGRES"><div class="cell radio"><input type="radio" name="p9" value="L" required></div><div class="cell cell-local">SAN LUIS</div><div class="cell radio"><input type="radio" name="p9" value="E"></div><div class="cell cell-visita">TIGRES</div><div class="cell radio"><input type="radio" name="p9" value="V"></div></div>
+        </div>
+        <button type="submit" class="submit" id="btnGuardar">🍀 GUARDAR Y ENVIAR 🍀</button>
+    </form>
+
+    <div id="final" class="hidden" style="text-align:center;">
+        <div class="title" style="background: #D4AF37; color: black;">🧧 ¡MUCHA SUERTE! ✨</div>
+        <p>¡Datos registrados! Envía tu comprobante.</p>
+        <div class="btn-share" id="btnCompartir"><i class="fas fa-share-alt"></i> INVITAR AMIGOS</div>
+        <div class="btn-whatsapp" id="btnWhats"><i class="fab fa-whatsapp"></i> ENVIAR POR WHATSAPP</div>
+    </div>
+
+    <div id="agradecimiento" class="hidden" style="text-align:center;">
+        <div class="title">✅ ¡LISTO! 🙏</div>
+        <div class="submit" onclick="location.reload()">ENVIAR OTRA</div>
+    </div>
+</div>
+
+<script>
+function mostrarFormulario() {
+    document.getElementById("bienvenida").classList.add("hidden");
+    document.getElementById("quinielaForm").classList.remove("hidden");
+}
+
+const url = "https://script.google.com/macros/s/AKfycbzh2f5CNWoQDOHjjHEkuK5wMVJdT5pjREwys44NCuMVQfC3ccZ-TZS4LyKzECQcopsQ/exec";
+let mensajeWhats = "";
+
+document.getElementById("btnCompartir").addEventListener("click", () => {
+    const link = window.location.href;
+    const mensajeInvitacion = `⚽ *¡TE INVITO A JUGAR LA QUINIELA LA PERRONA!* 🍀\n\nParticipa por una botella de *Maestro Dobel Diamante*. 🍾\n\n📝 El registro es *GRATIS*.\n👇 Entra aquí:\n${link}`;
+    navigator.clipboard.writeText(link).catch(err => console.log('Error al copiar link'));
+    window.open(`https://wa.me/?text=${encodeURIComponent(mensajeInvitacion)}`, "_blank");
+});
+
+document.getElementById("quinielaForm").addEventListener("submit", e => { e.preventDefault(); guardar(); });
+
+function guardar() {
+    const form = document.getElementById("quinielaForm");
+    const btn = document.getElementById("btnGuardar");
+    btn.innerText = "🍀 PROCESANDO..."; btn.disabled = true;
+
+    let data = { 
+        nombre: form.nombre.value.toUpperCase().trim(), 
+        telefono: form.telefono.value.trim(), 
+        telefono_invito: form.telefono_invito.value.trim(),
+        agregar_grupo: form.agregar_grupo.value 
+    };
+
+    mensajeWhats = `🏆 *QUINIELA LA PERRONA*\n👤 *${data.nombre}*\n📞 *Invitó:* ${data.telefono_invito}\n✅ *Grupo:* ${data.agregar_grupo}\n\n`;
+    document.querySelectorAll(".row").forEach((r, i) => {
+        const local = r.dataset.local, vis = r.dataset.visitante, sel = r.querySelector("input:checked").value;
+        const res = sel === "L" ? local : sel === "E" ? "Empate" : vis;
+        data["h" + (i + 1)] = `${local} VS ${vis}`; 
+        data["p" + (i + 1)] = res;
+        mensajeWhats += `${i+1}. ${local} vs ${vis} -> *${res}*\n`;
+    });
+
+    fetch(url, { method: "POST", body: JSON.stringify(data) })
+    .then(res => res.json())
+    .then(res => {
+        if (res.status === "error") { 
+            alert("❌ " + res.message); 
+            btn.innerText = "🍀 GUARDAR Y ENVIAR 🍀"; btn.disabled = false; 
+        } else { 
+            form.classList.add("hidden"); 
+            document.getElementById("final").classList.remove("hidden"); 
+        }
+    })
+    .catch(() => { 
+        alert("Error de conexión"); 
+        btn.innerText = "🍀 GUARDAR Y ENVIAR 🍀"; btn.disabled = false; 
+    });
+}
+
+document.getElementById("btnWhats").addEventListener("click", () => {
+    window.open(`https://wa.me/5214423774943?text=${encodeURIComponent(mensajeWhats)}`, "_blank");
+    document.getElementById("final").classList.add("hidden"); 
+    document.getElementById("agradecimiento").classList.remove("hidden");
+});
+</script>
+</body>
+</html>
